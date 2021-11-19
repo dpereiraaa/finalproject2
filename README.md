@@ -1,4 +1,3 @@
-# finalproject2
 # Finance app
 
 <br>
