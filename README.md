@@ -136,5 +136,5 @@ The url to your presentation slides
 
 ### Contributors
 
-Raissa Damasceno - [GitHubUsername](https://github.com/Raissa-Damasceno) - [LinkedinLink](https://www.linkedin.com/in/raissa-damasceno/)
+Raissa Damasceno - [GitHubUsername](https://github.com/Raissa-Damasceno) - [LinkedinLink](https://www.linkedin.com/in/raissa-damasceno/)<br>
 David Pereira - [GitHubUsername](https://github.com/dpereiraaa) - [LinkedinLink](https://www.linkedin.com/in/davidduartepereira)
