@@ -53,7 +53,19 @@ Personal finance platform to manage and track personal finances trough out the m
 
 ## Models
 
-User model
+User model:
+
+
+```javascript
+const users = new Schema ({
+    name: String,
+    username: String,
+    password: password
+})
+
+```
+
+Expenses model:
 
 ```javascript
 const expensesSchema = new Schema ({ 
@@ -70,6 +82,8 @@ const expensesSchema = new Schema ({
 
 ```
 
+Received:
+
 ```javascript
 const receivedSchema = new Schema ({ 
 
@@ -84,16 +98,6 @@ const receivedSchema = new Schema ({
 })
 
 ```
-
-```javascript
-const users = new Schema ({
-    name: String,
-    username: String,
-    password: password
-})
-
-```
-
 
 
 <br>
