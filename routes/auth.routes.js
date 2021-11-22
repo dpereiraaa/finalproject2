@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const User = require("./../models/User.model");
 const bcrypt = require("bcryptjs");
+const loggedIn = require("./../middleware/loggedIn");
+
+const saltRounds = 10;
 
 //AUTH ROUTES GO HERE
 
@@ -59,6 +62,16 @@ router.post("/login", (req, res) => {
     });
 });
 
+// LOGOUT ROUTE
+router.get("/logout", loggedIn, (req, res) => {
+    req.session.destroy((err) => {
+    if (err) {
+      return res.render("error");
+    }
+
+    res.redirect("/");
+  });
+});
 
 
 
