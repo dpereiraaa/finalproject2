@@ -1,0 +1,22 @@
+{{! views/auth/signup-form.hbs  }}
+
+<form id="form" action="/signup" method="POST">
+
+  <label for="name">Name</label><br />
+  <input type="text" name="name" placeholder="Your name" />
+  
+  <label for="username">Email</label><br />
+  <input type="text" name="username" placeholder="Your email" />
+
+  <label for="password">Password</label><br />
+  <input type="password" name="password" />
+
+<br>
+  <button type="submit">Create account</button>
+</form>
+
+{{! error message display: }}
+
+{{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+{{/if}}
