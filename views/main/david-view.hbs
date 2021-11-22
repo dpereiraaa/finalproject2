@@ -1,0 +1,26 @@
+<div class="main-page">
+    <h1>Main Page</h1>
+  <div class="expenses">
+    {{#each expenses}}
+      <div>
+        <p> Description: {{this.description}} </p>
+        <p> Value: {{this.value}} </p>
+        <p> Date: {{this.date}} </p>
+        <p> Category: {{this.category}} </p>
+      </div>
+
+    {{/each}}
+  </div>
+
+  <div class="received">
+    {{#each received}}
+      <div>
+        <p> Name: {{this.description}} </p>
+        <p> Value: {{this.value}} </p>
+        <p> Date: {{this.date}} </p>
+        <p> Category: {{this.category}} </p>
+      </div>
+
+    {{/each}}
+  </div>
+</div>
