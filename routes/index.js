@@ -13,4 +13,8 @@ router.get("/", (req, res, next) => {
   res.render("index", { userIsLoggedIn: userIsLoggedIn });
 });
 
+router.get("/main", (req, res, next) => {
+  res.render("main-app")
+})
+
 module.exports = router;
