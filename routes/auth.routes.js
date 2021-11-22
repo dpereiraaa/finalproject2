@@ -97,7 +97,8 @@ router.post("/login", (req, res) => {
       if (!isCorrectPassword) {
         throw new Error("Wrong credentials");
       } else if (isCorrectPassword) {
-        req.session.user = user;
+        console.log("hello")
+       // req.session.user = user;
         res.redirect("/");
       }
     })
