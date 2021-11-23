@@ -25,4 +25,20 @@ router.post("/newexpense", (req, res) => {
   
   });
 
+  //NEW EARNINGS
+router.get("/newearnings", (req, res, next) => {
+  res.render("main/new-earnings")
+  })
+
+router.post("/newearnings", (req, res) => {
+  const { description, value, date, category } = req.body;
+
+  Received.create({ description, value, date, category })
+    .then((createdEarning) => {
+      res.redirect(`/main`);
+    })
+    .catch( (err) => console.log(err));
+
+});
+
 module.exports = router;
