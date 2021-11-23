@@ -24,6 +24,43 @@ router.post("/newexpense", (req, res) => {
       .catch( (err) => console.log(err));
   
   });
+
+//EDITING EXPENSES
+router.get('/expenses/:expenseId/edit', (req, res) => {
+    const expenseId = req.params.expenseId;
+  
+    Expenses.findById(expenseId)
+      .then((expense) => {
+        res.render('main/david-expenses-edit-view', { expense: expense } );
+      })
+      .catch( (err) => console.log(err));
+  })
+  
+  
+router.post('/expenses/:expenseId/edit', (req, res) => {
+    const expenseId = req.params.expenseId;
+    const { description, value, date, category } = req.body;
+  
+    Expenses.findByIdAndUpdate(expenseId, { description, value, date, category }, { new: true })
+      .then((updatedExpense) => {
+        res.redirect(`/main`);
+      })
+      .catch( (err) => console.log(err));
+  })
+
+
+//DELETING EXPENSES
+router.post('/expenses/:expenseId/delete', (req, res) => {
+    const expenseId = req.params.expenseId;
+  
+    Expenses.findByIdAndRemove(expenseId)
+      .then((status) => {
+        res.redirect('/main')
+      })
+      .catch((err) => console.log(err));
+  })
+  
+
 //NEW EARNINGS
 router.get("/newearnings", (req, res, next) => {
     res.render("main/newearningdavid")
