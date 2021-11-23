@@ -99,7 +99,11 @@ router.post("/login", (req, res) => {
       } else if (isCorrectPassword) {
         console.log("hello")
        // req.session.user = user;
+<<<<<<< HEAD
         res.redirect("/maindavid");
+=======
+        res.redirect("/main");
+>>>>>>> 9b82924fa6d48c99389fb4ddffca17a37d38f1af
       }
     })
     .catch((err) => {
