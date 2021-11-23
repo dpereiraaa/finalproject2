@@ -1,0 +1,21 @@
+<form action="/newexpense" method="POST">
+  <br />
+  <label>Description:</label>
+  <input type="text" name="description" />
+
+  <br />
+  <label>value:</label>
+  <input type="number" name="value" />
+
+  <br />
+  <label>date:</label>
+  <input type="date" name="date" />
+  <br />
+  <select name="category" multiple>
+    <option value="clothes">clothes</option>
+    <option value="entertainment">entertainment</option>
+  </select>
+
+  <br />
+  <button type="submit">Add expense</button>
+</form>

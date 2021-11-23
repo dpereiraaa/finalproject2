@@ -1,43 +1,46 @@
-<form action="/raissatest" method="POST">
-  <br />
-  <label>description:</label>
-  <input type="text" name="title" />
-
-  <br />
-  <label>value:</label>
-  <input type="number" name="number" />
-
-  <br />
-  <label>date:</label>
-  <input type="date" name="date" />
-
-  <br />
-  <label>category:</label>
-  <input type="text" name="title" />
-
-  <br />
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
 
 
-  <select name="category" multiple>
-    <option value="clothes">Clothes</option>
-    <option value="Entertainment">Entertainment</option>
-    <option value="travel">travel</option>
-    <option value="gifts">gifts</option>
-    <option value="pets">pets</option>
-    <option value="investments">investments</option>
-    <option value="education">education</option>
-    <option value="debts">debts</option>
-    <option value="health">health</option>
-    <option value="purchases">purchases</option>
-    <option value="house">house</option>
-    <option value="bars">bars</option>
-    <option value="restaurants">restaurants</option>
-    <option value="subscriptions">subscriptions</option>
-    <option value="food">food</option>
-    <option value="transport">transport</option>
-    <option value="other">other</option>
-  </select>
+      
+      
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['category', 'Billing category'],
+          ['Clothes',     10],
+          ['Entertainment',      3],
+          ['Travel',  2],
+          ['Gifts', 2],
+          ['Pets',    7],
+          ['Investments',    7],
+          ['Education',    7],
+          ['Debts',    7],
+          ['Health',    7],
+          ['Purchases',    7],
+          ['House',    7],
+          ['Bars',    7],
+          ['Restaurants',    7],
+          ['Subscriptions',    7],
+          ['Food',    7],
+          ['Transport',    7],
+          ['Others',    7]
+        ]);
 
-  <br />
-  <button type="submit">New Account</button>
-</form>
+        var options = {
+          title: 'Personal Finance Organize',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart_3d" style="width: 1000px; height: 1000px;"></div>
+  </body>
+</html>
