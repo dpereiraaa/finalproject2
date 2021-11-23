@@ -8,8 +8,8 @@ const expensesSchema = new Schema (
         date: { type: Date, default: Date.now },
         category: {
             type: String,
-            enum: ["clothes", "entertainment", "travel", "gifts", "pets", "investments", "education", "debts", "health", "purchases", "house", "bars", "restaurants", "subscriptions", "food", "transport", "other"]
-            }
+            enum: ["Restaurants/bars", "Clothing", "Debts and Loans", "Education", "Entertainment and Hobbies", "Family and Children", "Food", "Gifts and Donations", "Groceries", "Health", "Home", "Investments", "Others", "Personal care", "Pets", "Shopping", "Subcriptions and Services", "Taxes", "Transportation", "Travel", "Work"]
+            }    
     }
 )
 
