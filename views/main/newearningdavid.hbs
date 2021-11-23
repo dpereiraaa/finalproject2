@@ -1,0 +1,23 @@
+<form action="/newearnings" method="POST">
+  <br />
+  <label>Description:</label>
+  <input type="text" name="description" />
+
+  <br />
+  <label>value:</label>
+  <input type="number" name="value" />
+
+  <br />
+  <label>date:</label>
+  <input type="date" name="date" />
+  <br />
+  <select name="category" multiple>
+    <option value="Investments">Investments</option>
+    <option value="Loans">Loans</option>
+    <option value="Salary">Salary</option>
+    <option value="Other earnings">Other earnings</option>
+  </select>
+
+  <br />
+  <button type="submit">Add expense</button>
+</form>

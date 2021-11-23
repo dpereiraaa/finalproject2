@@ -8,7 +8,7 @@ const receivedSchema = new Schema ({
     date: { type: Date, default: Date.now },
     category: { 
         type: String, 
-        enum: ["salary", "loans", "wage", "others"] 
+        enum: ["Investments", "Loans", "Salary", "Other earnings"] 
     }
 
 })
