@@ -1,13 +1,6 @@
 const router = require("express").Router();
 const Received = require("./../models/Received.model");
 
-
-
-
-
-
-
-
 router.get("/raissatest", (req, res, next) => {
 
 // find user
