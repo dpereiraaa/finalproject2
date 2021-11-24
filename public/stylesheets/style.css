@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap');´
 
-* {
-font-family: "Roboto";
-}
-
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Roboto";
 }
 
 a {
@@ -16,14 +12,26 @@ a {
 h1 {
   color: 15px;
 }
-/* 
-.index {
+
+.expearnDiv {
+  background-color: grey;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.indexChild {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
+.expenses {
+  background-color: white;
+  padding: 50px;
+  margin: 50px;
+  -webkit-border-radius: 20px 20px 20px 20px; 
+  -moz-border-radius: 20px 20px 20px 20px;
+  -o-border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.earnings {
+  background-color: white;
+  padding: 50px;
+  margin-left: 50px;
+}

@@ -7,7 +7,7 @@ const fileUploader = require('../config/cloudinary.config');
 router.get("/main", async (req, res, next) => {
     const expenses = await Expenses.find()
     const received = await Received.find()
-    res.render("teste/main-app", { expenses: expenses, received: received })
+    res.render("teste/main-app-dois", { expenses: expenses, received: received })
   })
 
 //NEW EXPENSES
