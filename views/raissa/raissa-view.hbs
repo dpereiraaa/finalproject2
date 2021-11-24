@@ -1,0 +1,36 @@
+<div class="main-page">
+    <h1>Main Page</h1>
+  <div class="expenses">
+    <h1>Expenses</h1>
+    {{#each expenses}}
+      <div>
+        <p> Description: {{this.description}} </p>
+        <p> Value: {{this.value}} </p>
+        <p> Date: {{this.date}} </p>
+        <p> Category: {{this.category}} </p>
+        <a href="/expenses/{{this._id}}/edit">Edit</a>
+        <form action="/expenses/{{this._id}}/delete" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+      </div>
+
+    {{/each}}
+  </div>
+
+  <div class="received">
+    <h1>Earnings</h1>
+    {{#each received}}
+      <div>
+        <p> Name: {{this.description}} </p>
+        <p> Value: {{this.value}} </p>
+        <p> Date: {{this.date}} </p>
+        <p> Category: {{this.category}} </p> 
+              <button><a href="/received/{{this._id}}/edit">Edit</a></button>        
+        <form action="/received/{{this._id}}/delete" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+      </div>
+
+    {{/each}}
+  </div>
+</div>
