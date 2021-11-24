@@ -75,7 +75,7 @@ router.post("/login", (req, res) => {
 
   if (usernameNotProvided || passwordNotProvided) {
     res.render("auth/login-view", {
-      errorMessage: "Please provide username and password.",
+      errorMessage: "Provide username and password.",
     });
 
     return;
@@ -104,7 +104,7 @@ router.post("/login", (req, res) => {
     })
     .catch((err) => {
       res.render("auth/login-view", {
-        errorMessage: err.message || "Please provide username and password.",
+        errorMessage: err.message || "Provide username and password.",
       });
     });
 });

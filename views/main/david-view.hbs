@@ -2,6 +2,7 @@
     <h1>Main Page</h1>
   <div class="expenses">
     <h1>Expenses</h1>
+      <a href="/newexpense">ADD EXPENSE</a>
     {{#each expenses}}
       <div>
         <p> Description: {{this.description}} </p>
@@ -13,7 +14,6 @@
             <button type="submit">Delete</button>
         </form>
       </div>
-
     {{/each}}
   </div>
 

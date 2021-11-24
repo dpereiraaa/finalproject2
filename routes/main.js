@@ -1,23 +1,25 @@
 const router = require("express").Router();
-const Expenses = require('../models/Expenses.model')
-const Received = require('../models/Received.model')
+const Expenses = require('../models/Expenses.model');
+const Received = require('../models/Received.model');
+const fileUploader = require('../config/cloudinary.config');
 
+//MAIN APP VIEW
 router.get("/main", async (req, res, next) => {
     const expenses = await Expenses.find()
     const received = await Received.find()
-    console.log("expenses", expenses, received);
     res.render("main/main-app", { expenses: expenses, received: received })
   })
 
-
-router.get("/newexpense", (req, res, next) => {
+//NEW EXPENSES
+router.get("/newexpense", (req, res) => {
     res.render("main/new-expense")
     })
 
-router.post("/newexpense", (req, res) => {
+router.post("/newexpense", fileUploader.single('receipt-img'), (req, res) => {
     const { description, value, date, category } = req.body;
+    console.log('req.file :>> ', req.file);
   
-    Expenses.create({ description, value, date, category })
+    Expenses.create({ description, value, date, category, imageUrl: req.file.path })
       .then((createdExpense) => {
         res.redirect(`/main`);
       })
@@ -25,20 +27,113 @@ router.post("/newexpense", (req, res) => {
   
   });
 
-  //NEW EARNINGS
-router.get("/newearnings", (req, res, next) => {
-  res.render("main/new-earnings")
+//EDITING EXPENSES
+router.get('/expenses/:expenseId/edit', (req, res) => {
+    const expenseId = req.params.expenseId;
+  
+    Expenses.findById(expenseId)
+      .then((expense) => {
+        res.render('main/expenses-edit-view', { expense: expense } );
+      })
+      .catch( (err) => console.log(err));
+  })
+  
+  
+router.post('/expenses/:expenseId/edit', (req, res) => {
+    const expenseId = req.params.expenseId;
+    const { description, value, date, category } = req.body;
+  
+    Expenses.findByIdAndUpdate(expenseId, { description, value, date, category }, { new: true })
+      .then((updatedExpense) => {
+        res.redirect(`/main`);
+      })
+      .catch( (err) => console.log(err));
   })
 
-router.post("/newearnings", (req, res) => {
+//DETAILS EXPENSE
+router.get('/expenses/:expenseId/details', (req, res) => {
+  const expenseId = req.params.expenseId;
+
+  Expenses.findById(expenseId)
+    .then((expense) => {
+      res.render('main/expenses-details-view', { expense: expense } );
+    })
+    .catch( (err) => console.log(err));
+})
+
+//DELETING EXPENSES
+router.post('/expenses/:expenseId/delete', (req, res) => {
+    const expenseId = req.params.expenseId;
+  
+    Expenses.findByIdAndRemove(expenseId)
+      .then((status) => {
+        res.redirect('/main')
+      })
+      .catch((err) => console.log(err));
+  })
+  
+
+//NEW EARNINGS
+router.get("/newearning", (req, res, next) => {
+    res.render("main/new-earnings")
+    })
+
+router.post("/newearning", (req, res) => {
+    const { description, value, date, category } = req.body;
+  
+    Received.create({ description, value, date, category })
+      .then((createdEarning) => {
+        res.redirect(`/main`);
+      })
+      .catch( (err) => console.log(err));
+  
+  });
+
+
+//EDITING EARNINGS
+router.get('/earnings/:earningsId/edit', (req, res) => {
+  const earningsId = req.params.earningsId;
+
+  Received.findById(earningsId)
+    .then((earnings) => {
+      res.render('main/earnings-edit-view', { earnings: earnings } );
+    })
+    .catch( (err) => console.log(err));
+})
+
+
+router.post('/expenses/:earningsId/edit', (req, res) => {
+  const earningsId = req.params.earningsId;
   const { description, value, date, category } = req.body;
 
-  Received.create({ description, value, date, category })
-    .then((createdEarning) => {
+  Received.findByIdAndUpdate(earningsId, { description, value, date, category }, { new: true })
+    .then((updatedEarning) => {
       res.redirect(`/main`);
     })
     .catch( (err) => console.log(err));
+})
 
-});
+//DETAILS EARNINGS
+router.get('/earnings/:earningsId/details', (req, res) => {
+const earningsId = req.params.earningsId;
+
+Received.findById(earningsId)
+  .then((earnings) => {
+    res.render('main/earnings-details-view', { earnings: earnings } );
+  })
+  .catch( (err) => console.log(err));
+})
+
+//DELETING EARNINGS
+router.post('/earnings/:earningsId/delete', (req, res) => {
+  const earningsId = req.params.earningsId;
+
+  Received.findByIdAndRemove(earningsId)
+    .then((status) => {
+      res.redirect('/main')
+    })
+    .catch((err) => console.log(err));
+})
+
 
 module.exports = router;

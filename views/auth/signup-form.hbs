@@ -1,14 +1,15 @@
-{{! views/auth/signup-form.hbs  }}
-
-<form id="form" action="/signup" method="POST">
-
-  <label for="username">Username</label><br />
-  <input type="text" name="username" placeholder="username" />
-
-  <label for="password">Password</label><br />
-  <input type="password" name="password" />
-
-  <button type="submit">Create account</button>
+<form id="form" action="/signup" method="POST" class="row g-3">
+  <div class="col-auto">
+    <label for="username" class="visually-hidden">Username</label>
+    <input type="text" name="username" placeholder="Username" class="form-control">
+  </div>
+  <div class="col-auto">
+    <label for="password" class="visually-hidden">Password</label>
+    <input type="password" name="password" placeholder="Password" class="form-control" >
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Create account</button>
+  </div>
 </form>
 
 {{#if errorMessage}}

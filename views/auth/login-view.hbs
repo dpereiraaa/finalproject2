@@ -1,14 +1,16 @@
-<form id="form" action="/login" method="POST">
-
-  <label for="username">Username</label><br />
-  <input type="text" name="username" placeholder="Your username" />
-
-  <label for="password">Password</label><br />
-  <input type="password" name="password" />
-
-  <button type="submit">Login</button>
+<form id="form" action="/login" method="POST" class="row g-3">
+  <div class="col-auto">
+    <label for="username" class="visually-hidden">Username</label>
+    <input type="text" name="username" placeholder="Username" class="form-control">
+  </div>
+  <div class="col-auto">
+    <label for="password" class="visually-hidden">Password</label>
+    <input type="password" name="password" placeholder="Password" class="form-control" >
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Login</button>
+  </div>
 </form>
-
 
 {{#if errorMessage}}
   <div class="error-message">{{errorMessage}}</div>
