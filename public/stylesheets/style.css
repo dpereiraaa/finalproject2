@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap');´
+
+* {
+font-family: "Roboto";
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -10,3 +16,14 @@ a {
 h1 {
   color: 15px;
 }
+/* 
+.index {
+  display: flex;
+  justify-content: center;
+}
+
+.indexChild {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */

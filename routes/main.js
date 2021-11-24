@@ -17,10 +17,13 @@ router.get("/newexpense", (req, res) => {
 
 router.post("/newexpense", fileUploader.single('receipt-img'), (req, res) => {
     const { description, value, date, category } = req.body;
-    console.log('req.file :>> ', req.file);
-  
-    Expenses.create({ description, value, date, category, imageUrl: req.file.path })
+    let fileUrl = "";
+    if(req.file){
+      fileUrl = req.file.path;
+    }
+    Expenses.create({ description, value, date, category, imageUrl: fileUrl })
       .then((createdExpense) => {
+        console.log(createdExpense)
         res.redirect(`/main`);
       })
       .catch( (err) => console.log(err));

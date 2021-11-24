@@ -33,6 +33,8 @@ module.exports = (app) => {
   app.set("view engine", "hbs");
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
+  const hbs = require("hbs");
+  hbs.registerPartials(path.join(__dirname, "..", 'views/partials'));
 
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
