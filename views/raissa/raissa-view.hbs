@@ -2,15 +2,15 @@
     <h1>Main Page</h1>
   <div class="expenses">
     <h1>Expenses</h1>
+    <button><a href="/newexpense">ADD EXPENSE</a></button>
     {{#each expenses}}
       <div>
-        <p> Description: {{this.description}} </p>
-        <p> Value: {{this.value}} </p>
-        <p> Date: {{this.date}} </p>
-        <p> Category: {{this.category}} </p>
-        <a href="/expenses/{{this._id}}/edit">Edit</a>
+        <p> {{this.description}} </p>
+        <p> Value: {{this.value}}€ </p>
+        <button><a href="/expenses/{{this._id}}/details">View</a></button>
+        <button><a href="/expenses/{{this._id}}/edit">Edit</a></button>        
         <form action="/expenses/{{this._id}}/delete" method="POST">
-            <button type="submit">Delete</button>
+          <button type="submit">Delete</button>
         </form>
       </div>
 
@@ -19,15 +19,15 @@
 
   <div class="received">
     <h1>Earnings</h1>
+    <button><a href="/newearning">ADD EARNING</a></button>
     {{#each received}}
       <div>
-        <p> Name: {{this.description}} </p>
-        <p> Value: {{this.value}} </p>
-        <p> Date: {{this.date}} </p>
-        <p> Category: {{this.category}} </p> 
-              <button><a href="/received/{{this._id}}/edit">Edit</a></button>        
+        <p>{{this.description}} </p>
+        <p> Value: {{this.value}}€ </p>
+        <button><a href="/expenses/{{this._id}}/details">View</a></button>
+        <button><a href="/received/{{this._id}}/edit">Edit</a></button>        
         <form action="/received/{{this._id}}/delete" method="POST">
-            <button type="submit">Delete</button>
+          <button type="submit">Delete</button>
         </form>
       </div>
 
