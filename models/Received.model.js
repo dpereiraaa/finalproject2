@@ -9,8 +9,8 @@ const receivedSchema = new Schema ({
     category: { 
         type: String, 
         enum: ["Investments", "Loans", "Salary", "Other earnings"] 
-    }
-
+    },
+    imageUrl: { type: String, default: "../public/images/whiteBackground.jpg" }
 })
 
 const Received = mongoose.model("Received", receivedSchema)

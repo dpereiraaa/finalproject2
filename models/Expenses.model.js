@@ -10,7 +10,7 @@ const expensesSchema = new Schema (
             type: String,
             enum: ["Restaurants/bars", "Clothing", "Debts and Loans", "Education", "Entertainment and Hobbies", "Family and Children", "Food", "Gifts and Donations", "Groceries", "Health", "Home", "Investments", "Others", "Personal care", "Pets", "Shopping", "Subcriptions and Services", "Taxes", "Transportation", "Travel", "Work"]
             },
-        imageUrl: String
+        imageUrl: { type: String }
     }
 )
 

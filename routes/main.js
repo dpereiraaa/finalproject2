@@ -4,11 +4,16 @@ const Received = require('../models/Received.model');
 const fileUploader = require('../config/cloudinary.config');
 
 //MAIN APP VIEW
-router.get("/main", async (req, res, next) => {
-    const expenses = await Expenses.find()
-    const received = await Received.find()
-    res.render("teste/main-app-dois", { expenses: expenses, received: received })
-  })
+router.get('/main', async (req, res, next) => {
+  const expenses = await Expenses.find()
+  const received = await Received.find()
+  console.log(expenses)
+  console.log(received)
+  const sumOfExpenses = expenses.map(exp=> exp.value).reduce((a,b)=> a + b);
+  const sumOfReceived = received.map(rec=> rec.value).reduce((a,b)=> a + b);
+  const total = sumOfExpenses + sumOfReceived
+  res.render('teste/main-app', { expenses, received, sumOfExpenses , sumOfReceived, total })
+})
 
 //NEW EXPENSES
 router.get("/newexpense", (req, res) => {
@@ -17,13 +22,15 @@ router.get("/newexpense", (req, res) => {
 
 router.post("/newexpense", fileUploader.single('receipt-img'), (req, res) => {
     const { description, value, date, category } = req.body;
-    let fileUrl = "";
-    if(req.file){
-      fileUrl = req.file.path;
-    }
+     let fileUrl = "";
+     if(req.file){
+       fileUrl = req.file.path;
+     } else {
+       fileUrl = "/images/whiteBackground.jpg"
+     }
     Expenses.create({ description, value, date, category, imageUrl: fileUrl })
       .then((createdExpense) => {
-        console.log(createdExpense)
+        console.log("createdExpense", createdExpense)
         res.redirect(`/main`);
       })
       .catch( (err) => console.log(err));
@@ -81,11 +88,17 @@ router.get("/newearning", (req, res, next) => {
     res.render("main/new-earnings")
     })
 
-router.post("/newearning", (req, res) => {
+router.post("/newearning", fileUploader.single('receipt-img'), (req, res) => {
     const { description, value, date, category } = req.body;
-  
-    Received.create({ description, value, date, category })
+    let fileUrl = "";
+    if(req.file){
+      fileUrl = req.file.path;
+    } else {
+      fileUrl = "/images/whiteBackground.jpg"
+    }
+    Received.create({ description, value, date, category, imageUrl: fileUrl })
       .then((createdEarning) => {
+        console.log('createdEarning :>> ', createdEarning);
         res.redirect(`/main`);
       })
       .catch( (err) => console.log(err));
