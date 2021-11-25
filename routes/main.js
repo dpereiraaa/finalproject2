@@ -2,34 +2,13 @@ const router = require("express").Router();
 const Expenses = require('../models/Expenses.model');
 const Received = require('../models/Received.model');
 const fileUploader = require('../config/cloudinary.config');
+const User = require('../models/User.model');
 
 //MAIN APP VIEW
-<<<<<<< HEAD
-
-router.get("/main", async (req, res, next) => {
-    const expenses = await Expenses.find()
-    const received = await Received.find()
-    console.log(expenses)
-    console.log(received)
-
-    let sumOfExpenses = 0;
-    if (expenses.length > 0 ){
-      sumOfExpenses = expenses.map(exp=> exp.value).reduce((a,b)=> a + b);
-    }
-
-    let sumOfReceived = 0;
-    if(received.length > 0) {
-      sumOfReceived = received.map(rec=> rec.value).reduce((a,b)=> a + b);
-    }
-
-    const total = sumOfExpenses + sumOfReceived
-
-    res.render("teste/main-app", { expenses, received, sumOfExpenses , sumOfReceived, total })
-  })
-=======
 router.get("/main", async (req, res, next) => {
   const expenses = await Expenses.find()
   const received = await Received.find()
+  const user = await User.find();
   let sumOfExpenses = 0;
   
   if (expenses.length > 0 ){
@@ -41,11 +20,10 @@ router.get("/main", async (req, res, next) => {
     sumOfReceived = received.map(rec=> rec.value).reduce((a,b)=> a + b);
   }
 
-  const total = sumOfExpenses + sumOfReceived
+  const total = sumOfReceived - sumOfExpenses;
 
-  res.render("teste/main-app", { expenses, received, sumOfExpenses , sumOfReceived, total })
+  res.render("teste/main-app", { expenses, received, sumOfExpenses , sumOfReceived, total, user })
 })
->>>>>>> e43627adfca91d0733b60845a02a964cef7b5442
 
 //NEW EXPENSES
 router.get("/newexpense", (req, res) => {
