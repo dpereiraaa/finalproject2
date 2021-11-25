@@ -1,369 +1,68 @@
-<h1>Main Page</h1>
-<h2>Expenses: {{sumOfExpenses}}€</h2>
-<h2>Received: {{sumOfReceived}}€</h2>
-<h2>Total: {{total}}€</h2>
+<nav class="navbar">
+  <div class="navbarTitle">
+    <p>Finance app</p>
+  </div>
+  <div class="navDropDown">
+    <div class="dropdown">
+      <button class="dropbtn">Menu</button>
+      <div class="dropdown-content">
+        <a href="#">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="topDiv">
+  <div class="fastDiv">
+    <div class="helloSums">
+      <div class="incExp">
+
+        <div class="fastEarnings">
+          <p class="fastEarningsp">EARNINGS</p>
+          <p class="fastEarningspp">{{sumOfReceived}}€</p>
+        </div>
+
+        <div class="fastExpenses">
+          <p class="fastExpensesp">EXPENSES</p>
+          <p class="fastExpensespp">{{sumOfExpenses}}€</p>
+        </div>
+
+        <div class="totalSum">
+          <p class="totalSump">OVERALL</p>
+          <p class="totalSumpp">{{total}}€</p>
+        </div>
+
+      </div>
+
+      <div class="graph">
+        <div class="graphIn">
+
+          <script
+            type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"
+          ></script>
+
+          <script type="text/javascript">
+            google.charts.load("current", {packages:["corechart"]});
+            google.charts.setOnLoadCallback(() => drawChart({{sumOfExpenses}},
+            {{sumOfReceived}})); function drawChart(expense, received) { let
+            data = google.visualization.arrayToDataTable([ ['Accounts',
+            'Total'], ['Expense', expense], ['Earning', received], ]); let
+            options = { title: '', pieHole: 0.5, colors: ['#e0440e', '#f6c7b6']
+            }; var chart = new
+            google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options); }
+          </script>
+
+          <div id="donutchart" style="width: 300px; height: 300px;"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="expearnDiv">
-  <div class="expenses">
-    <div class="expNav">
-      <h1>Expenses</h1>
-      <div class="expBtn">
-        <!--add expenses button -->
-        <!-- Botao add expenses -->
-        <button
-          type="button"
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#expenseModal"
-          data-bs-whatever="@mdo"
-        ><img src="/images/add.png" height="25px" width="25px" /></button>
-        <!-- Modal add expenses -->
-        <div
-          class="modal fade"
-          id="expenseModal"
-          tabindex="-1"
-          aria-labelledby="expenseModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="expenseModalLabel">Add expense</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <div class="formExpDiv">
-
-                <form
-                  action="/newexpense"
-                  method="POST"
-                  enctype="multipart/form-data"
-                >
-                  <div class="topAddExp">
-                    <div class="leftAddExp">
-                      <label>Description:</label>
-                      <input type="text" name="description" />
-
-                      <br />
-                      <label>Value:</label>
-                      <input type="number" name="value" />
-
-                      <br />
-                      <label>Date:</label>
-                      <br />
-                      <input type="date" name="date" />
-                      <br />
-                    </div>
-                    <div class="rightAddExp">
-                      Category:
-                      <select name="category" multiple>
-                        <option
-                          value="Restaurants/bars"
-                        >Restaurants/bars</option>
-                        <option value="Clothing">Clothing</option>
-                        <option value="Debts and Loans">Debts and Loans</option>
-                        <option value="Education">Education</option>
-                        <option value="Entertainment and Hobbies">Entertainment
-                          and Hobbies</option>
-                        <option value="Family and Children">Family and Children</option>
-                        <option value="Food">Food</option>
-                        <option value="Gifts and Donations">Gifts and Donations</option>
-                        <option value="Health">Health</option>
-                        <option value="Home">Home</option>
-                        <option value="Investments">Investments</option>
-                        <option value="Personal care">Personal care</option>
-                        <option value="Pets">Pets</option>
-                        <option value="Shopping">Shopping</option>
-                        <option value="Subcriptions and Services">Subcriptions
-                          and Services</option>
-                        <option value="Taxes">Taxes</option>
-                        <option value="Transportation">Transportation</option>
-                        <option value="Travel">Travel</option>
-                        <option value="Work">Work</option>
-                        <option value="Others">Others</option>
-                      </select>
-                    </div>
-
-                  </div>
-                  <div class="imgExp">
-                    <label>Image:
-                      <input type="file" name="receipt-img" />
-                    </label>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >Close</button>
-                    <button type="submit" class="btn btn-danger">Add Expense</button>
-                  </div>
-
-                </form>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="allExp">
-      {{#each expenses}}
-        <div class="eachExp">
-          <div class="exp-valDesc">
-            <p class="exp-valDescp"> {{this.description}} | {{this.value}}€ </p>
-          </div>
-          <div class="expBtns">
-            <!-- Botao details expenses -->
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-toggle="modal"
-              data-bs-target="#expenseModal{{@key}}"
-            >
-              <img src="/images/details.png" height="20px" width="20px" />
-            </button>
-            <!-- Modal details expenses -->
-            <div
-              class="modal fade"
-              id="expenseModal{{@key}}"
-              tabindex="-1"
-              aria-labelledby="expenseModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="expenseModalLabel">Expense
-                      details</h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="expDetails">
-                      <div>
-                        <p> Description: {{this.description}} </p>
-                        <p> Value: {{this.value}}€ </p>
-                        <p> Date: {{this.date}} </p>
-                        <p> Category: {{this.category}} </p>
-                      </div>
-                      <div>
-                        <a href="">
-                          <img
-                            src="{{this.imageUrl}}"
-                            width="250px"
-                            height="900px"
-                            class="img-thumbnail"
-                          />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button type="button" class="btn btn-secondary">
-              <a href="/expenses/{{this._id}}/edit"><img
-                  src="/images/edit.png"
-                  height="20px"
-                  width="20px"
-                /></a>
-            </button>
-            <button type="button" class="btn btn-danger">
-              <form action="/expenses/{{this._id}}/delete" method="POST"><img
-                  src="/images/delete.png"
-                  height="20px"
-                  width="20px" type="submit"
-                />
-              </form>
-            </button>
-                    <form action="/expenses/{{this._id}}/delete" method="POST">
-          <button type="submit">Delete</button>
-        </form>
-
-          </div>
-        </div>
-
-      {{/each}}
-    </div>
-  </div>
-
-  {{!-- <div class="earnings">
-    <h1>Earnings</h1>
-    <!-- Botao add earnings-->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#earningModal{{@key}}"
-      data-bs-whatever="@mdo"
-    >Add Earning</button>
-    <!-- Modal add earnings -->
-    <div
-      class="modal fade"
-      id="earningModal{{@key}}"
-      tabindex="-1"
-      aria-labelledby="earningModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="earningModalLabel">New message</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-
-            <form action="/newearning" method="POST">
-              <br />
-              <label>Description:</label>
-              <input type="text" name="description" />
-
-              <br />
-              <label>Value:</label>
-              <input type="number" name="value" />
-
-              <br />
-              <label>Date:</label>
-              <input type="date" name="date" />
-              <br />
-              <select name="category" multiple>
-                <option value="Investments">Investments</option>
-                <option value="Loans">Loans</option>
-                <option value="Salary">Salary</option>
-                <option value="Other earnings">Other earnings</option>
-              </select>
-
-              <br />
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >Close</button>
-                <button type="submit" class="btn btn-primary">Add Earning</button>
-              </div>
-            </form>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    {{#each received}}
-      <div>
-        <p> {{this.description}} </p>
-        <p> Value: {{this.value}}€ </p>
-        <!-- Botao details earnings-->
-        <button
-          type="button"
-          class="btn btn-success"
-          data-bs-toggle="modal"
-          data-bs-target="#earningModal{{@key}}"
-        >
-          Details
-        </button>
-        <!-- Modal details earnings -->
-        <div
-          class="modal fade"
-          id="earningModal{{@key}}"
-          tabindex="-1"
-          aria-labelledby="earningModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="earningModalLabel">Earning details</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <div>
-                  <p> Description: {{this.description}} </p>
-                  <p> Value: {{this.value}} </p>
-                  <p> Date: {{this.date}} </p>
-                  <p> Category: {{this.category}} </p>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button><a href="/earnings/{{this._id}}/edit">Edit</a></button>
-        <form action="/earnings/{{this._id}}/delete" method="POST">
-          <button type="submit">Delete</button>
-        </form>
-      </div>
-      {{/each}}
-    </div> --}}
-  </div>
-
-<html>
-  <body>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Accounts', 'Total'],
-          ['Expense',     20],
-          ['Income',      20],
-        ]);
-
-        var options = {
-          title: '',
-          pieHole: 0.5,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-      }
-    </script>
-    <div id="donutchart" style="width: 600px; height: 500px;"></div>
-  </body>
-</html>
-
-
-
-<<<<<<< HEAD
-=======
-    {{/each}}
-  </div> --}}
-
   <div class="earnings">
     <div class="earnNav">
       <h1>Earnings</h1>
@@ -372,7 +71,7 @@
         <!-- Botao add earnings -->
         <button
           type="button"
-          class="btn btn-danger"
+          class="btn btn-light"
           data-bs-toggle="modal"
           data-bs-target="#earningsModal{{@key}}"
           data-bs-whatever="@mdo"
@@ -399,53 +98,53 @@
               <div class="modal-body">
                 <div class="formExpDiv">
 
-                <form
-                  action="/newearning"
-                  method="POST"
-                  enctype="multipart/form-data"
-                >
-                  <div class="topAddEarn">
-                    <div class="leftAddEarn">
-                      <label>Description:</label>
-                      <input type="text" name="description" />
+                  <form
+                    action="/newearning"
+                    method="POST"
+                    enctype="multipart/form-data"
+                  >
+                    <div class="topAddEarn">
+                      <div class="leftAddEarn">
+                        <label>Description:</label>
+                        <input type="text" name="description" />
 
-                      <br />
-                      <label>Value:</label>
-                      <input type="number" name="value" />
+                        <br />
+                        <label>Value:</label>
+                        <input type="number" name="value" />
 
-                      <br />
-                      <label>Date:</label>
-                      <br />
-                      <input type="date" name="date" />
-                      <br />
+                        <br />
+                        <label>Date:</label>
+                        <br />
+                        <input type="date" name="date" />
+                        <br />
+                      </div>
+                      <div class="rightAddEarn">
+                        Category:
+                        <select name="category" multiple>
+                          <option value="Investments">Investments</option>
+                          <option value="Loans">Loans</option>
+                          <option value="Salary">Salary</option>
+                          <option value="Other earnings">Other earnings</option>
+                        </select>
+                      </div>
+
                     </div>
-                    <div class="rightAddEarn">
-                      Category:
-                      <select name="category" multiple>
-                            <option value="Investments">Investments</option>
-                            <option value="Loans">Loans</option>
-                            <option value="Salary">Salary</option>
-                            <option value="Other earnings">Other earnings</option>
-                      </select>
+                    <div class="imgEarn">
+                      <label>Image:
+                        <input type="file" name="receipt-img" />
+                      </label>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >Close</button>
+                      <button type="submit" class="btn btn-light">Add Earning</button>
                     </div>
 
-                  </div>
-                  <div class="imgEarn">
-                    <label>Image:
-                      <input type="file" name="receipt-img" />
-                    </label>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >Close</button>
-                    <button type="submit" class="btn btn-danger">Add Earning</button>
-                  </div>
-
-                </form>
+                  </form>
                 </div>
 
               </div>
@@ -458,13 +157,17 @@
       {{#each received}}
         <div class="eachEarn">
           <div class="earn-valDesc">
-            <p class="earn-valDescp"> {{this.description}} | {{this.value}}€ </p>
+            <p class="earn-valDescp">
+              {{this.description}}
+              |
+              {{this.value}}€
+            </p>
           </div>
           <div class="earnBtns">
             <!-- Botao details earnings -->
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-light"
               data-bs-toggle="modal"
               data-bs-target="#earningModal{{@key}}"
             >
@@ -520,26 +223,232 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-secondary">
+            <button type="button" class="btn btn-light">
               <a href="/earnings/{{this._id}}/edit"><img
                   src="/images/edit.png"
                   height="20px"
                   width="20px"
                 /></a>
             </button>
-            <button type="button" class="btn btn-danger">
-              <form action="/earnings/{{this._id}}/delete" method="POST"><img
+            <form action="/earnings/{{this._id}}/delete" method="POST">
+              <button type="submit" class="btn btn-light">
+                <img
                   src="/images/delete.png"
                   height="20px"
                   width="20px"
+                  type="submit"
                 />
-              </form>
-            </button>
+              </button>
+            </form>
 
           </div>
         </div>
 
       {{/each}}
     </div>
+  </div>
+
+  <div class="expenses">
+    <div class="expNav">
+      <h1>Expenses</h1>
+      <div class="expBtn">
+        <!--add expenses button -->
+        <!-- Botao add expenses -->
+        <button
+          type="button"
+          class="btn btn-light"
+          data-bs-toggle="modal"
+          data-bs-target="#expenseModal"
+          data-bs-whatever="@mdo"
+        ><img src="/images/add.png" height="25px" width="25px" /></button>
+        <!-- Modal add expenses -->
+        <div
+          class="modal fade"
+          id="expenseModal"
+          tabindex="-1"
+          aria-labelledby="expenseModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="expenseModalLabel">Add expense</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="formExpDiv">
+
+                  <form
+                    action="/newexpense"
+                    method="POST"
+                    enctype="multipart/form-data"
+                  >
+                    <div class="topAddExp">
+                      <div class="leftAddExp">
+                        <label>Description:</label>
+                        <input type="text" name="description" />
+
+                        <br />
+                        <label>Value:</label>
+                        <input type="number" name="value" />
+
+                        <br />
+                        <label>Date:</label>
+                        <br />
+                        <input type="date" name="date" />
+                        <br />
+                      </div>
+                      <div class="rightAddExp">
+                        Category:
+                        <select name="category" multiple>
+                          <option
+                            value="Restaurants/bars"
+                          >Restaurants/bars</option>
+                          <option value="Clothing">Clothing</option>
+                          <option value="Debts and Loans">Debts and Loans</option>
+                          <option value="Education">Education</option>
+                          <option
+                            value="Entertainment and Hobbies"
+                          >Entertainment and Hobbies</option>
+                          <option value="Family and Children">Family and
+                            Children</option>
+                          <option value="Food">Food</option>
+                          <option value="Gifts and Donations">Gifts and
+                            Donations</option>
+                          <option value="Health">Health</option>
+                          <option value="Home">Home</option>
+                          <option value="Investments">Investments</option>
+                          <option value="Personal care">Personal care</option>
+                          <option value="Pets">Pets</option>
+                          <option value="Shopping">Shopping</option>
+                          <option value="Subcriptions and Services">Subcriptions
+                            and Services</option>
+                          <option value="Taxes">Taxes</option>
+                          <option value="Transportation">Transportation</option>
+                          <option value="Travel">Travel</option>
+                          <option value="Work">Work</option>
+                          <option value="Others">Others</option>
+                        </select>
+                      </div>
+
+                    </div>
+                    <div class="imgExp">
+                      <label>Image:
+                        <input type="file" name="receipt-img" />
+                      </label>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >Close</button>
+                      <button type="submit" class="btn btn-light">Add Expense</button>
+                    </div>
+
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="allExp">
+      {{#each expenses}}
+        <div class="eachExp">
+          <div class="exp-valDesc">
+            <p class="exp-valDescp"> {{this.description}} | {{this.value}}€ </p>
+          </div>
+          <div class="expBtns">
+            <!-- Botao details expenses -->
+            <button
+              type="button"
+              class="btn btn-light"
+              data-bs-toggle="modal"
+              data-bs-target="#expenseModal{{@key}}"
+            >
+              <img src="/images/details.png" height="20px" width="20px" />
+            </button>
+            <!-- Modal details expenses -->
+            <div
+              class="modal fade"
+              id="expenseModal{{@key}}"
+              tabindex="-1"
+              aria-labelledby="expenseModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="expenseModalLabel">Expense
+                      details</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="expDetails">
+                      <div>
+                        <p> Description: {{this.description}} </p>
+                        <p> Value: {{this.value}}€ </p>
+                        <p> Date: {{this.date}} </p>
+                        <p> Category: {{this.category}} </p>
+                      </div>
+                      <div>
+                        <a href="">
+                          <img
+                            src="{{this.imageUrl}}"
+                            width="250px"
+                            height="900px"
+                            class="img-thumbnail"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-light">
+              <a href="/expenses/{{this._id}}/edit"><img
+                  src="/images/edit.png"
+                  height="20px"
+                  width="20px"
+                /></a>
+            </button>
+            <form action="/expenses/{{this._id}}/delete" method="POST">
+              <button type="submit" class="btn btn-light">
+                <img
+                  src="/images/delete.png"
+                  height="20px"
+                  width="20px"
+                  type="submit"
+                />
+              </button>
+            </form>
+          </div>
+        </div>
+
+      {{/each}}
+    </div>
+
+  </div>
 </div>
->>>>>>> e43627adfca91d0733b60845a02a964cef7b5442
