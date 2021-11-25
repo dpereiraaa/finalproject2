@@ -1,4 +1,7 @@
 <h1>Main Page</h1>
+<h2>Expenses: {{sumOfExpenses}} </h2>
+<h2>Received: {{sumOfReceived}} </h2>
+<h2>Total: {{total}}</h2>
 <div class="expenses">
   <h1>Expenses</h1>
   <!-- Botao add expenses -->
@@ -193,6 +196,37 @@
 
   {{/each}}
 </div>
+
+
+
+
+<html>
+  <body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Accounts', 'Total'],
+          ['Expense',     20],
+          ['Income',      20],
+        ]);
+
+        var options = {
+          title: '',
+          pieHole: 0.5,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+    <div id="donutchart" style="width: 600px; height: 500px;"></div>
+  </body>
+</html>
+
+
 
 
 

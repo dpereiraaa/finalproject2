@@ -4,10 +4,26 @@ const Received = require('../models/Received.model');
 const fileUploader = require('../config/cloudinary.config');
 
 //MAIN APP VIEW
+
 router.get("/main", async (req, res, next) => {
     const expenses = await Expenses.find()
     const received = await Received.find()
-    res.render("teste/main-app-dois", { expenses: expenses, received: received })
+    console.log(expenses)
+    console.log(received)
+
+    let sumOfExpenses = 0;
+    if (expenses.length > 0 ){
+      sumOfExpenses = expenses.map(exp=> exp.value).reduce((a,b)=> a + b);
+    }
+
+    let sumOfReceived = 0;
+    if(received.length > 0) {
+      sumOfReceived = received.map(rec=> rec.value).reduce((a,b)=> a + b);
+    }
+
+    const total = sumOfExpenses + sumOfReceived
+
+    res.render("teste/main-app", { expenses, received, sumOfExpenses , sumOfReceived, total })
   })
 
 //NEW EXPENSES
