@@ -33,13 +33,15 @@ router.get("/newexpense", (req, res) => {
 
 router.post("/newexpense", fileUploader.single('receipt-img'), (req, res) => {
     const { description, value, date, category } = req.body;
-    let fileUrl = "";
-    if(req.file){
-      fileUrl = req.file.path;
-    }
+     let fileUrl = "";
+     if(req.file){
+       fileUrl = req.file.path;
+     } else {
+       fileUrl = "/images/whiteBackground.jpg"
+     }
     Expenses.create({ description, value, date, category, imageUrl: fileUrl })
       .then((createdExpense) => {
-        console.log(createdExpense)
+        console.log("createdExpense", createdExpense)
         res.redirect(`/main`);
       })
       .catch( (err) => console.log(err));
@@ -97,11 +99,17 @@ router.get("/newearning", (req, res, next) => {
     res.render("main/new-earnings")
     })
 
-router.post("/newearning", (req, res) => {
+router.post("/newearning", fileUploader.single('receipt-img'), (req, res) => {
     const { description, value, date, category } = req.body;
-  
-    Received.create({ description, value, date, category })
+    let fileUrl = "";
+    if(req.file){
+      fileUrl = req.file.path;
+    } else {
+      fileUrl = "/images/whiteBackground.jpg"
+    }
+    Received.create({ description, value, date, category, imageUrl: fileUrl })
       .then((createdEarning) => {
+        console.log('createdEarning :>> ', createdEarning);
         res.redirect(`/main`);
       })
       .catch( (err) => console.log(err));
