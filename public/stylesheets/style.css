@@ -350,9 +350,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-<<<<<<< HEAD
-}
-=======
 }
 
 /* login style */
@@ -428,4 +425,3 @@ input[type="password"] {
   -o-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
->>>>>>> 82828d0b32e16da88a121b9a7d9d03b02e2f0295
