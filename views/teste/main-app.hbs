@@ -1,7 +1,7 @@
 <h1>Main Page</h1>
-<h2>Expenses: {{sumOfExpenses}} </h2>
-<h2>Received: {{sumOfReceived}} </h2>
-<h2>Total: {{total}}</h2>
+<h2>Expenses: {{sumOfExpenses}}€</h2>
+<h2>Received: {{sumOfReceived}}€</h2>
+<h2>Total: {{total}}€</h2>
 <div class="expearnDiv">
   <div class="expenses">
     <div class="expNav">
@@ -54,6 +54,7 @@
 
                       <br />
                       <label>Date:</label>
+                      <br />
                       <input type="date" name="date" />
                       <br />
                     </div>
@@ -100,7 +101,7 @@
                       class="btn btn-secondary"
                       data-bs-dismiss="modal"
                     >Close</button>
-                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                    <button type="submit" class="btn btn-danger">Add Expense</button>
                   </div>
 
                 </form>
@@ -189,10 +190,13 @@
               <form action="/expenses/{{this._id}}/delete" method="POST"><img
                   src="/images/delete.png"
                   height="20px"
-                  width="20px"
+                  width="20px" type="submit"
                 />
               </form>
             </button>
+                    <form action="/expenses/{{this._id}}/delete" method="POST">
+          <button type="submit">Delete</button>
+        </form>
 
           </div>
         </div>
@@ -355,3 +359,187 @@
 
 
 
+<<<<<<< HEAD
+=======
+    {{/each}}
+  </div> --}}
+
+  <div class="earnings">
+    <div class="earnNav">
+      <h1>Earnings</h1>
+      <div class="earnBtn">
+        <!--add earnings button -->
+        <!-- Botao add earnings -->
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#earningsModal{{@key}}"
+          data-bs-whatever="@mdo"
+        ><img src="/images/add.png" height="25px" width="25px" /></button>
+        <!-- Modal add earningss -->
+        <div
+          class="modal fade"
+          id="earningsModal{{@key}}"
+          tabindex="-1"
+          aria-labelledby="earningsModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="earningsModalLabel">Add earnings</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="formExpDiv">
+
+                <form
+                  action="/newearning"
+                  method="POST"
+                  enctype="multipart/form-data"
+                >
+                  <div class="topAddEarn">
+                    <div class="leftAddEarn">
+                      <label>Description:</label>
+                      <input type="text" name="description" />
+
+                      <br />
+                      <label>Value:</label>
+                      <input type="number" name="value" />
+
+                      <br />
+                      <label>Date:</label>
+                      <br />
+                      <input type="date" name="date" />
+                      <br />
+                    </div>
+                    <div class="rightAddEarn">
+                      Category:
+                      <select name="category" multiple>
+                            <option value="Investments">Investments</option>
+                            <option value="Loans">Loans</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Other earnings">Other earnings</option>
+                      </select>
+                    </div>
+
+                  </div>
+                  <div class="imgEarn">
+                    <label>Image:
+                      <input type="file" name="receipt-img" />
+                    </label>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >Close</button>
+                    <button type="submit" class="btn btn-danger">Add Earning</button>
+                  </div>
+
+                </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="allEarn">
+      {{#each received}}
+        <div class="eachEarn">
+          <div class="earn-valDesc">
+            <p class="earn-valDescp"> {{this.description}} | {{this.value}}€ </p>
+          </div>
+          <div class="earnBtns">
+            <!-- Botao details earnings -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-toggle="modal"
+              data-bs-target="#earningModal{{@key}}"
+            >
+              <img src="/images/details.png" height="20px" width="20px" />
+            </button>
+            <!-- Modal details earnings -->
+            <div
+              class="modal fade"
+              id="earningModal{{@key}}"
+              tabindex="-1"
+              aria-labelledby="earningModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="earningModalLabel">Earning
+                      details</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="earnDetails">
+                      <div>
+                        <p> Description: {{this.description}} </p>
+                        <p> Value: {{this.value}}€ </p>
+                        <p> Date: {{this.date}} </p>
+                        <p> Category: {{this.category}} </p>
+                      </div>
+                      <div>
+                        <a href="">
+                          <img
+                            src="{{this.imageUrl}}"
+                            width="250px"
+                            height="900px"
+                            class="img-thumbnail"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-secondary">
+              <a href="/earnings/{{this._id}}/edit"><img
+                  src="/images/edit.png"
+                  height="20px"
+                  width="20px"
+                /></a>
+            </button>
+            <button type="button" class="btn btn-danger">
+              <form action="/earnings/{{this._id}}/delete" method="POST"><img
+                  src="/images/delete.png"
+                  height="20px"
+                  width="20px"
+                />
+              </form>
+            </button>
+
+          </div>
+        </div>
+
+      {{/each}}
+    </div>
+</div>
+>>>>>>> e43627adfca91d0733b60845a02a964cef7b5442
