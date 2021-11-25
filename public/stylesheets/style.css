@@ -350,4 +350,82 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
 }
+=======
+}
+
+/* login style */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
+#formContent {
+  border-radius: 100px 10px 100px 10px;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  padding: 55px;
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* FORM */
+
+input[type="text"] {
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  border: 2px solid #f6f6f6;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type="password"] {
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  border: 2px solid #f6f6f6;
+  border-radius: 5px 5px 5px 5px;
+}
+
+/* Index */
+
+.navbaridx {
+  background-color: rgb(49, 211, 116);
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbarTitleidx {
+  margin-left: 15px;
+  margin-top: -1px;
+}
+
+.navDropDownidx {
+  margin-top: -3px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.dropbtn {
+  background-color: #eeeeee;
+  color: black;
+  padding: 7px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -o-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+>>>>>>> 82828d0b32e16da88a121b9a7d9d03b02e2f0295
