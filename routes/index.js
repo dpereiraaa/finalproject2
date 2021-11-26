@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
 //     userIsLoggedIn = true;
 //   }
  
-res.render("index");
+res.render("auth/signup-form");
 
   // res.render("index", { userIsLoggedIn: userIsLoggedIn });
 });
