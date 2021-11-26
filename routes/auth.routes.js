@@ -107,13 +107,13 @@ router.post("/login", (req, res) => {
 });
 
 // LOGOUT ROUTE
- router.get("/logout", loggedIn, (req, res) => {
-     req.session.destroy((err) => {
-     if (err) {
-       return res.render("error");
-     }
-     res.redirect("/");
-   });
+ router.get("/logout", (req, res) => {
+    //  req.session.destroy((err) => {
+    //  if (err) {
+    //    return res.render("error");
+    //  }
+    // });
+    res.redirect("/");
  });
 
 

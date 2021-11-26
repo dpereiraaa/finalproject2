@@ -3,7 +3,9 @@
 
   <div class="title">
     <img src="images/logo.png">
-      <button type="submit" class="logout-Btn">LogOut</button>
+          <span class="logout-Btn">
+      <button type="button" class="btn btn-light"> <a href="/logout">Logout</a> </button>
+    </span>
   </div>
 </div>
 
@@ -33,13 +35,12 @@
       <div class="fastTotal">
         <div class="fastEspensespp">
           <div class="middle">
-            <h3>Total:</h3>
+            <h3>Total</h3>
             <div class="total">
             <h1>€{{total}},00</h1>
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -55,27 +56,37 @@
        </div>
 
 
-
-    
-
     <div class="graph">
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script type="text/javascript">
         google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(() => drawChart({{ sumOfExpenses }}, {{ sumOfReceived }}));
-        function drawChart(expense, received) {
-          let
-            data = google.visualization.arrayToDataTable([
+        google.charts.setOnLoadCallback(() => drawChart({{sumOfHome}}, {{sumOfEducation}}, {{sumOfEntertainment}}, {{sumOfRestaurant}}, {{sumOfHealth}}, {{sumOfPets}}, {{sumOfGroceries}}, {{sumOfShopping}}, {{sumOfSubscriptions}}, {{sumOfTransportation}}, {{sumOfTravel}}, {{sumOfOthersExp}}));
+        function drawChart(home, education, entertainment, restaurant, health, pets, groceries, shopping, subscriptions, transportation, travel, others ) 
+        {
+          let data = google.visualization.arrayToDataTable([
               ['Accounts', 'Total'],
-              ['Expense', expense],
-              ['Earning', received],]); 
+              ['Home', home],
+              ['Education', education],
+              ['Entertainment', entertainment],
+              ['Restaurant', restaurant],
+              ['Health', health],
+              ['Pets', pets],
+              ['Groceries', groceries],
+              ['Shopping', shopping],
+              ['Subscriptions', subscriptions],
+              ['Transportation', transportation],
+              ['Travel', travel],
+              ['Others', others],
+              
+              ]); 
               let options = {
                   title: '', pieHole: 0.4,
-                  colors: ['#F27A75', '#36D4BA']
+                  colors: ['#008080', '#5F9EA0', '#2F4F4F', '#7B68EE', '#4169E1', '#6495ED', '#0000FF' , '#0000CD' ,'#00008B' ,'#000080' ,'#191970' , '#87CEEB' ]
                 }; var chart = new
                   google.visualization.PieChart(document.getElementById('donutchart'));
           chart.draw(data, options);
         }
+        
       </script>
       <div id="donutchart" style="width: 500px; height: 500px;"></div>
     </div>
@@ -157,7 +168,7 @@
         
         
         <div class="allEarn">
-          {{#each received}}
+          {{#each formatedReceived}}
           <div class="eachEarn">
             <div class="earn-valDesc">
               <p class="earn-valDescp">
@@ -188,7 +199,7 @@
                         <div>
                           <p> Description: {{this.description}} </p>
                           <p> Value: €{{this.value}},00 </p>
-                          <p> Date: {{this.date}} </p>
+                          <p> Date: {{this.newdate}} </p>
                           <p> Category: {{this.category}} </p>
                         </div>
                         <div>
@@ -272,7 +283,7 @@
                           <option value="Pets">Pets</option>
                           <option value="Groceries">Groceries</option>
                           <option value="Shopping">Shopping</option>
-                          <option value="Subcriptions">Subcriptions</option>
+                          <option value="Subscriptions">Subscriptions</option>
                           <option value="Transportation">Transportation</option>
                           <option value="Travel">Travel</option>
                           <option value="Others">Others</option>
@@ -301,7 +312,7 @@
           </div>
         </div>
         <div class="allExp">
-          {{#each expenses}}
+          {{#each formatedExpenses}}
           <div class="eachExp">
             <div class="exp-valDesc">
               <p class="exp-valDescp"> {{this.description}} 
@@ -332,7 +343,7 @@
                         <div>
                           <p> Description: {{this.description}} </p>
                           <p> Value: €{{this.value}},00 </p>
-                          <p> Date: {{this.date}} </p>
+                          <p> Date: {{this.newdate}} </p>
                           <p> Category: {{this.category}} </p>
                         </div>
                         <div>
@@ -365,7 +376,9 @@
       </div>
     </div>
 
-  </div>
 
-</main>
-</body>
+
+
+
+
+

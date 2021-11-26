@@ -8,7 +8,7 @@ const expensesSchema = new Schema (
         date: { type: Date, default: Date.now },
         category: {
             type: String,
-            enum: [ "Home", "Education", "Entertainment", "Restaurant and bar", "Health", "Pets", "Groceries", "Shopping", "Subcriptions", "Transportation", "Travel", "Others",]
+            enum: [ "Home", "Education", "Entertainment", "Restaurant and bar", "Health", "Pets", "Groceries", "Shopping", "Subscriptions", "Transportation", "Travel", "Others",]
             },
         imageUrl: { type: String }
     }
