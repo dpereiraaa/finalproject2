@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap');´
-
-body {
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap");
+´ body {
   padding: 50px;
   font: 14px "Roboto";
 }
@@ -35,7 +34,7 @@ h1 {
   font-size: 16px;
   border: none;
   cursor: pointer;
-  -webkit-border-radius: 5px 5px 5px 5px; 
+  -webkit-border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   -o-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
@@ -51,9 +50,9 @@ h1 {
   position: absolute;
   background-color: #f9f9f9;
   min-width: 65px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  -webkit-border-radius: 5px 5px 5px 5px; 
+  -webkit-border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   -o-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
@@ -66,11 +65,13 @@ h1 {
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
-  -webkit-border-radius: 5px 5px 5px 5px; 
+  -webkit-border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   -o-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
@@ -97,7 +98,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
-  -webkit-border-radius: 15px 15px 15px 15px; 
+  -webkit-border-radius: 15px 15px 15px 15px;
   -moz-border-radius: 15px 15px 15px 15px;
   -o-border-radius: 15px 15px 15px 15px;
   border-radius: 15px 15px 15px 15px;
@@ -161,7 +162,6 @@ h1 {
   font-size: 1.3em;
 }
 
-
 .expearnDiv {
   background-color: rgb(240, 239, 239);
   display: flex;
@@ -172,7 +172,7 @@ h1 {
   background-color: white;
   padding: 50px;
   margin: 50px;
-  -webkit-border-radius: 20px 20px 20px 20px; 
+  -webkit-border-radius: 20px 20px 20px 20px;
   -moz-border-radius: 20px 20px 20px 20px;
   -o-border-radius: 20px 20px 20px 20px;
   border-radius: 20px 20px 20px 20px;
@@ -193,7 +193,7 @@ h1 {
   align-items: center;
   justify-content: center;
   background-color: rgb(240, 239, 239);
-  -webkit-border-radius: 2.5px 2.5px 2.5px 2.5px; 
+  -webkit-border-radius: 2.5px 2.5px 2.5px 2.5px;
   -moz-border-radius: 2.5px 2.5px 2.5px 2.5px;
   -o-border-radius: 2.5px 2.5px 2.5px 2.5px;
   border-radius: 2.5px 2.5px 2.5px 2.5px;
@@ -220,7 +220,7 @@ h1 {
 
 .eachExp {
   background-color: rgb(240, 239, 239);
-  -webkit-border-radius: 5px 5px 5px 5px; 
+  -webkit-border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   -o-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
@@ -230,13 +230,11 @@ h1 {
   margin-bottom: 15px;
 }
 
-
 .exp-valDesc {
   margin: 15px;
   margin-bottom: 5px;
   margin-right: 20px;
   margin-left: 30px;
-
 }
 
 .exp-valDescp {
@@ -264,7 +262,7 @@ h1 {
   background-color: white;
   padding: 50px;
   margin: 50px;
-  -webkit-border-radius: 20px 20px 20px 20px; 
+  -webkit-border-radius: 20px 20px 20px 20px;
   -moz-border-radius: 20px 20px 20px 20px;
   -o-border-radius: 20px 20px 20px 20px;
   border-radius: 20px 20px 20px 20px;
@@ -285,7 +283,7 @@ h1 {
   align-items: center;
   justify-content: center;
   background-color: rgb(240, 239, 239);
-  -webkit-border-radius: 2.5px 2.5px 2.5px 2.5px; 
+  -webkit-border-radius: 2.5px 2.5px 2.5px 2.5px;
   -moz-border-radius: 2.5px 2.5px 2.5px 2.5px;
   -o-border-radius: 2.5px 2.5px 2.5px 2.5px;
   border-radius: 2.5px 2.5px 2.5px 2.5px;
@@ -312,7 +310,7 @@ h1 {
 
 .eachEarn {
   background-color: rgb(240, 239, 239);
-  -webkit-border-radius: 5px 5px 5px 5px; 
+  -webkit-border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   -o-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
@@ -322,13 +320,11 @@ h1 {
   margin-bottom: 15px;
 }
 
-
 .earn-valDesc {
   margin: 15px;
   margin-bottom: 5px;
   margin-right: 20px;
   margin-left: 30px;
-
 }
 
 .earn-valDescp {
@@ -424,4 +420,28 @@ input[type="password"] {
   -moz-border-radius: 5px 5px 5px 5px;
   -o-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
+}
+
+.editEarnings {
+  background-color: rgb(240, 239, 239);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 150px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -o-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.earnCateg {
+  display: flex;
+  justify-content: center;
+}
+
+.saveEarnButton {
+  display: flex;
+  justify-content: center;
 }

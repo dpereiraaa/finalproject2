@@ -1,21 +1,37 @@
-<form action="/earnings/{{earnings._id}}/edit" method="POST">
-  <label>Description:</label>
-  <input type="text" name="description" value="{{earnings.description}}" />
+<div class="earningsBackground">
+  <div class="editEarnings">
+    <form action="/earnings/{{earnings._id}}/edit" method="POST">
+    <div class="earnCateg">
+      <div>
+        <label>Description:</label>
+        <input
+          type="text"
+          name="description"
+          value="{{earnings.description}}"
+        />
 
-  <label>Value:</label>
-  <input type="number" name="value" value="{{earnings.value}}" />
+        <label>Value:</label>
+        <input type="number" name="value" value="{{earnings.value}}" />
 
-  <label>Date:</label>
-  <input type="date" name="date" value="{{earnings.date}}" />
+        <label>Date:</label>
+        <input type="date" name="date" value="{{earnings.date}}" />
+      </div>
+      <div>
+        <label>Category:</label>
 
-  <label>Category:</label>
+        <select name="category" multiple>
+          <option value="Investments">Investments</option>
+          <option value="Loans">Loans</option>
+          <option value="Salary">Salary</option>
+          <option value="Other earnings">Other earnings</option>
+        </select>
+      </div>
+    </div> 
+      <div class="saveEarnButton">
+        <button type="submit">Save</button>
 
-  <select name="category" multiple>
-    <option value="Investments">Investments</option>
-    <option value="Loans">Loans</option>
-    <option value="Salary">Salary</option>
-    <option value="Other earnings">Other earnings</option>
-  </select>
+      </div>
+    </form>
 
-  <button type="submit">Save</button>
-</form>
+  </div>
+</div>
