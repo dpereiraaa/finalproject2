@@ -44,7 +44,7 @@ const passwordNotProvided = !password || password === "";
     })
 
     .then((createdUser) => {
-      res.redirect("/");
+      res.redirect("/login");
     })
 
     .catch((err) => {
