@@ -6,14 +6,17 @@ const User = require('../models/User.model');
 
 //MAIN APP VIEW
 router.get("/main", async (req, res, next) => {
-  const expenses = await Expenses.find()
-  const received = await Received.find()
+  const expenses = await Expenses.find();
+  const received = await Received.find();
   const user = await User.find();
-  let sumOfExpenses = 0;
   
+
+
+  let sumOfExpenses = 0;
   if (expenses.length > 0 ){
     sumOfExpenses = expenses.map(exp=> exp.value).reduce((a,b)=> a + b);
   }
+
 
   let sumOfReceived = 0;
   if(received.length > 0) {
@@ -22,7 +25,162 @@ router.get("/main", async (req, res, next) => {
 
   const total = sumOfReceived - sumOfExpenses;
 
-  res.render("teste/main-app", { expenses, received, sumOfExpenses , sumOfReceived, total, user })
+//Expenses
+  //Home sum
+  sumOfHome = 0;
+    if(expenses.length > 0) {
+  filterOfHome = expenses.filter(exp=> exp.category === 'Home') 
+    if (filterOfHome > 0) {
+  sumOfHome = filterOfHome.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+  //Education sum
+  sumOfEducation = 0;
+    if(expenses.length > 0) {
+  filterOfEducation = expenses.filter(exp=> exp.category === 'Education') 
+    if (filterOfEducation > 0) {
+  sumOfEducation = filterOfEducation.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+  //Entertainment sum
+  sumOfEntertainment = 0;
+    if(expenses.length > 0) {
+  filterOfEntertainment = expenses.filter(exp=> exp.category === 'Entertainment') 
+    if (filterOfEntertainment > 0) {
+  sumOfEntertainment = filterOfEntertainment.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+  
+  //Restaurant sum
+  sumOfRestaurant = 0;
+    if(expenses.length > 0) {
+  filterOfRestaurant = expenses.filter(exp=> exp.category === 'Restaurant') 
+    if (filterOfRestaurant > 0) {
+  sumOfRestaurant = filterOfRestaurant.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+
+  //Health sum
+  sumOfHealth = 0;
+    if(expenses.length > 0) {
+  filterOfHealth = expenses.filter(exp=> exp.category === 'Health') 
+    if (filterOfHealth > 0) {
+  sumOfHealth = filterOfHealth.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+  //Pets sum
+  sumOfPets = 0;
+    if(expenses.length > 0) {
+  filterOfPets = expenses.filter(exp=> exp.category === 'Pets') 
+    if (filterOfPets > 0) {
+  sumOfPets = filterOfPets.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+  
+  //Groceries sum
+  sumOfGroceries = 0;
+    if(expenses.length > 0) {
+  filterOfGroceries = expenses.filter(exp=> exp.category === 'Groceries') 
+    if (filterOfGroceries > 0) {
+  sumOfGroceries = filterOfGroceries.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+  
+  //Shopping sum
+  sumOfShopping = 0;
+    if(expenses.length > 0) {
+  filterOfShopping = expenses.filter(exp=> exp.category === 'Shopping') 
+    if (filterOfShopping > 0) {
+  sumOfShopping = filterOfShopping.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+  //Subcriptions sum
+  sumOfSubcriptions = 0;
+    if(expenses.length > 0) {
+  filterOfSubcriptions = expenses.filter(exp=> exp.category === 'Subcriptions') 
+    if (filterOfSubcriptions > 0) {
+  sumOfSubcriptions = filterOfSubcriptions.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+  //Transportation sum
+  sumOfTransportation = 0;
+    if(expenses.length > 0) {
+  filterOfTransportation = expenses.filter(exp=> exp.category === 'Transportation') 
+    if (filterOfTransportation > 0) {
+  sumOfTransportation = filterOfTransportation.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+  //Travel sum
+  sumOfTravel = 0;
+    if(expenses.length > 0) {
+  filterOfTravel = expenses.filter(exp=> exp.category === 'Travel') 
+    if (filterOfTravel > 0) {
+  sumOfTravel = filterOfTravel.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+  //Others sum
+  sumOfOthers = 0;
+    if(expenses.length > 0) {
+  filterOfOthers = expenses.filter(exp=> exp.category === 'Others') 
+    if (filterOfOthers > 0) {
+  sumOfOthers = filterOfOthers.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+  //Earnings
+
+    //Subcriptions sum
+  sumOfSubcriptions = 0;
+    if(received.length > 0) {
+  filterOfSubcriptions = received.filter(exp=> exp.category === 'Subcriptions') 
+    if (filterOfSubcriptions > 0) {
+  sumOfSubcriptions = filterOfSubcriptions.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+  
+    //Loans sum
+  sumOfLoans = 0;
+    if(received.length > 0) {
+  filterOfLoans = received.filter(exp=> exp.category === 'Loans') 
+    if (filterOfLoans > 0) {
+  sumOfLoans = filterOfLoans.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+    //Salary sum
+  sumOfSalary = 0;
+    if(received.length > 0) {
+  filterOfSalary = received.filter(exp=> exp.category === 'Salary') 
+    if (filterOfSalary > 0) {
+  sumOfSalary = filterOfSalary.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+    //Others  sum
+  sumOfOthers = 0;
+    if(received.length > 0) {
+  filterOfOthers = received.filter(exp=> exp.category === 'Others') 
+    if (filterOfOthers > 0) {
+  sumOfOthers = filterOfOthers.map(exp=> exp.value).reduce((a,b)=> a+b);
+  }
+    }
+
+
+
+  
+
+  
+ 
+
+  res.render("main/main-app", { expenses, received, sumOfExpenses , sumOfReceived, total, user })
 })
 
 //NEW EXPENSES
@@ -128,7 +286,7 @@ router.get('/earnings/:earningsId/edit', (req, res) => {
 })
 
 
-router.post('/expenses/:earningsId/edit', (req, res) => {
+router.post('/earnings/:earningsId/edit', (req, res) => {
   const earningsId = req.params.earningsId;
   const { description, value, date, category } = req.body;
 
