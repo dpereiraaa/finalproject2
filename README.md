@@ -99,44 +99,22 @@ const receivedSchema = new Schema ({
 
 ```
 
-
 <br>
-
-
-
-## Backlog
-
-[See the Trello board.](https://trello.com/b/Q0YCN9po/finance-project)
-
-
-
-<br>
-
 
 
 ## Links
-
 
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Repository Link](https://github.com/dpereiraaa/finalproject2)
+[Repository Link](https://https://github.com/dpereiraaa/financeerapp)
 
-[Deploy Link]()
-
+[Deploy Link](https://financeerapp.herokuapp.com/main)
 
 
 <br>
-
-
-
-### Slides
-
-The url to your presentation slides
-
-[Slides Link]()
 
 ### Contributors
 
